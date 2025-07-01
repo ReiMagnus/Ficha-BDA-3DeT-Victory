@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ficha_bda.iml" filepath="$PROJECT_DIR$/ficha_bda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/ficha_bda_android.iml" filepath="$PROJECT_DIR$/android/ficha_bda_android.iml" />
+    </modules>
+  </component>
+</project>

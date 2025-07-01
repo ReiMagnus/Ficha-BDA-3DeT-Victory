@@ -1,0 +1,18 @@
+{
+    "nome": "Luci",
+    "arquetipo":{"pontos":1,"nome":"Humano (Lefou)"},
+    "kitPersona":{"pontos":1,"nome":"Impostor"},
+    "pontos": 15,
+    "xps": 2,
+    "atributos": [2,4,1],
+    "recurAtuais": [0,10,4],
+    "recurMaximos": [2,30,5],
+    "recurSig":[0, 0],
+    "listPericias": [{"nome":"Manha","pontos":1},{"nome":"Percepção","pontos":1},{"nome":"Influência","pontos":1}],
+    "listArquetipo": [{"nome":"Talento (Gênio)"},{"nome":"Percepção"},{"nome":"Cacoete (Fracote)"}],
+    "listKitPersona": [{"nome":"Disfarce perfeito"},{"nome":"Engenheiro"},{"nome":"Jogo da imitação"}],
+    "listPoderSig": [{"nome":"SIG Imunidade (Sem mente)","pontos":-1},{"nome":"SIG Sentido (Raio X)","pontos":-1}],
+    "listPoderes": [{"nome":"Imortal","pontos":1},{"nome":"Imitar","pontos":1},{"nome":"Alcance","pontos":1},{"nome":"Ataque Especial (Preciso)","pontos":1},{"nome":"+Mana","pontos":1},{"nome":"Código de caçador","pontos":-1},{"nome":"Munição","pontos":-1}],
+    "listTecnicas": [{"nome":"Dominio de sangue","pontos":0}],
+    "listInventario": [{"nome":"Colar Espião - Abençoado"},{"nome":"Sniper de Energia"}]
+}

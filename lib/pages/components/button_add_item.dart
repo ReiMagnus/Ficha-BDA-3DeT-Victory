@@ -56,7 +56,7 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
           }
           
           return AlertDialog(
-            title: Text("Criando habilidade:"),
+            title: Text("Criando item:"),
             content: dialog,
             actions: [
               ElevatedButton(

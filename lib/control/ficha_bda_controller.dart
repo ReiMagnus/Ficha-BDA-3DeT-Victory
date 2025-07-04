@@ -96,7 +96,7 @@ class FichaBdaController extends ChangeNotifier {
     ItemSimples item;
     switch (parteFicha) {
       case PartesFicha.arquetipo:
-        item = _ficha.listKitPersona.elementAt(index);
+        item = _ficha.listArquetipo.elementAt(index);
       case PartesFicha.kitpersonagem:
         item = _ficha.listKitPersona.elementAt(index);
       case PartesFicha.inventario:

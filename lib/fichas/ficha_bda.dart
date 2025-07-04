@@ -228,7 +228,7 @@ class FichaBDA {
       'listPoderSig': listPoderSig.map((x) => x.toMap()).toList(),
       'listPoderes': listPoderes.map((x) => x.toMap()).toList(),
       'listTecnicas': listTecnicas.map((x) => x.toMap()).toList(),
-      'listInventario': listInventario,
+      'listInventario': listInventario.map((x) => x.toMap()).toList(),
     };
   }
 

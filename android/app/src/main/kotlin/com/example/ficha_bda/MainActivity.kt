@@ -1,4 +1,4 @@
-package com.example.ficha_bda
+package com.reimagnus.ficha_bda
 
 import io.flutter.embedding.android.FlutterActivity
 

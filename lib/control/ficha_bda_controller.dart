@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:ficha_bda/fichas/ficha_bda.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 
 enum PartesFicha {
   // compatíveis com ItemSimples e ItemComposto
@@ -15,6 +17,8 @@ enum PartesFicha {
 
 enum Atributos { poder, habilidade, resistencia }
 
+const String nameFile = "ficha_bda.json";
+
 class FichaBdaController extends ChangeNotifier {
   FichaBDA _ficha = FichaBDA();
 
@@ -24,13 +28,6 @@ class FichaBdaController extends ChangeNotifier {
     _createFicha();
   }
 
-  Future<void> _createFicha() async {
-    String json = await rootBundle.loadString("lib/json/ficha_bda.json");
-    _ficha = FichaBDA.fromJson(json);
-    _sortAllLists();
-    debugPrint("Ficha carregada com sucesso ----- ");
-  }
-  
   bool get isEditavel => _isEditavel;
 
   String get nome => _ficha.nome;
@@ -46,13 +43,30 @@ class FichaBdaController extends ChangeNotifier {
   List<ItemComposto> get listTecnicas => _ficha.listTecnicas;
   List<ItemSimples> get listInventario => _ficha.listInventario;
 
-  /*
-  set nome(String nome) => _ficha.nome;
-  set arquetipo(ItemComposto arquetipo) => ;
-  set kitPersona(ItemComposto kitPersona) => _ficha.kitPersona;
-  set pontos(int pontos) => _ficha.pontos;
-  set xps(int xps) => _ficha.xps;
-  */
+  void _createFicha() async {
+    final String dir = (await getApplicationDocumentsDirectory()).path;
+
+    if(File("$dir/$nameFile").existsSync()) {
+      _ficha = FichaBDA.fromJson(File("$dir/$nameFile").readAsStringSync());
+      debugPrint("Ficha carregada com sucesso ----- ");
+    } else {
+      _ficha = FichaBDA();
+      File file = File("$dir/$nameFile");
+      file.writeAsStringSync(_ficha.toJson());
+      file.create();
+      debugPrint("Ficha criada com sucesso ----- ");
+    }
+    notifyListeners();
+  }
+
+  void _saveFicha() async {
+    final String dir = (await getApplicationDocumentsDirectory()).path;
+    if(File("$dir/$nameFile").existsSync()) {
+      File("$dir/$nameFile").writeAsStringSync(_ficha.toJson());
+    } else {
+      throw Exception();
+    }
+  }
 
   int getAtributo({required int alvo, required Atributos atr}) {
     int valor = -1;
@@ -135,10 +149,16 @@ class FichaBdaController extends ChangeNotifier {
     _ficha.listPericias.sort();
     _ficha.listArquetipo.sort();
     _ficha.listKitPersona.sort();
+    _ficha.listPoderSig.sort();
     _ficha.listPoderes.sort();
     _ficha.listTecnicas.sort();
     _ficha.listInventario.sort();
+    _attTela();
+  }
+
+  void _attTela() {
     notifyListeners(); // Atualizando a tela
+    _saveFicha();
   }
 
   void trocarModoEditavel() {
@@ -160,7 +180,7 @@ class FichaBdaController extends ChangeNotifier {
     _ficha.kitPersona = ItemComposto((kitPersonaPts != "") ? int.parse(kitPersonaPts) : 0, kitPersonaNome);
     _ficha.pontos = (pontos != "") ? int.parse(pontos) : 0;
     _ficha.xps = (xp != "") ? int.parse(xp) : 0;
-    notifyListeners();
+    _attTela();
   }
 
   void setAtributo({
@@ -190,12 +210,12 @@ class FichaBdaController extends ChangeNotifier {
       case 2:
         _ficha.setRecurMaximos(int.parse(valor), index);
     }
-    notifyListeners();
+    _attTela();
   }
 
   void setSignificado(int valor, int index) {
     _ficha.setSignificado(valor, index);
-    notifyListeners();
+    _attTela();
   }
 
   void addItem({

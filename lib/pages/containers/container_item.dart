@@ -32,7 +32,11 @@ class _ContainerItemState extends State<ContainerItem> {
       padding: const EdgeInsets.all(8),
       color: Theme.of(context).colorScheme.onPrimary,
       child: Consumer<FichaBdaController>(
-        builder: (BuildContext context,FichaBdaController value,Widget? child) {
+        builder: (
+          BuildContext context,
+          FichaBdaController value,
+          Widget? child,
+        ) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,7 +48,10 @@ class _ContainerItemState extends State<ContainerItem> {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
-                  Visibility(visible: value.isEditavel, child: ButtonAddItem(parteFicha: widget.parteFicha)),
+                  Visibility(
+                    visible: value.isEditavel,
+                    child: ButtonAddItem(parteFicha: widget.parteFicha),
+                  ),
                 ],
               ),
               Divider(color: Theme.of(context).colorScheme.secondary),
@@ -61,7 +68,10 @@ class _ContainerItemState extends State<ContainerItem> {
                       ),
                       Visibility(
                         visible: value.isEditavel,
-                        child: ButtonEditItem(parteFicha: widget.parteFicha, indexItem: index),
+                        child: ButtonEditItem(
+                          parteFicha: widget.parteFicha,
+                          indexItem: index,
+                        ),
                       ),
                     ],
                   );

@@ -1,7 +1,7 @@
 name: ficha_bda
 description: "App de ficha do sistema de RPG 3DeT Victory."
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0+1
 
 environment:
   sdk: ^3.7.2
@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.6
+  path_provider: ^2.1.5
   provider: ^6.1.5
 
 dev_dependencies:
@@ -16,8 +19,22 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
 
+flutter_launcher_icons: # dart run flutter_launcher_icons
+  android: "launcher_icon"
+  image_path: "assets/images/IconAppBDA-1024.png" 
+  adaptive_icon_background: "assets/images/BackgroundAppBDA.png"
+  adaptive_icon_foreground: "assets/images/LogoAppBDA.png"
+
+flutter_native_splash: # dart run flutter_native_splash:create
+  color: "#673ab7"
+  image: "assets/images/LogoAppBDA.png"
+
+  android_12:
+    color: "#673ab7"
+    image: "assets/images/LogoAppBDA.png"
+
 flutter:
   uses-material-design: true
   assets:
-    - lib\json\ficha_bda.json
+    - assets\json\ficha_bda.json
 

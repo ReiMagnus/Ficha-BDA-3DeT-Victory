@@ -214,8 +214,8 @@ class FichaBDA {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'nome': nome,
-      'arquetipo': arquetipo,
-      'kitPersona': kitPersona,
+      'arquetipo': arquetipo.toMap(),
+      'kitPersona': kitPersona.toMap(),
       'pontos': pontos,
       'xps': xps,
       'atributos': _atributos,
@@ -225,7 +225,7 @@ class FichaBDA {
       'listPericias': listPericias.map((x) => x.toMap()).toList(),
       'listArquetipo': listArquetipo.map((x) => x.toMap()).toList(),
       'listKitPersona': listKitPersona.map((x) => x.toMap()).toList(),
-      'listPoderSig': listKitPersona.map((x) => x.toMap()).toList(),
+      'listPoderSig': listPoderSig.map((x) => x.toMap()).toList(),
       'listPoderes': listPoderes.map((x) => x.toMap()).toList(),
       'listTecnicas': listTecnicas.map((x) => x.toMap()).toList(),
       'listInventario': listInventario,
@@ -290,7 +290,15 @@ class ItemSimples implements Comparable<ItemSimples> {
 class ItemComposto extends ItemSimples {
   int pontos = 0;
 
-  ItemComposto(this.pontos, super.nome);
+  ItemComposto(int pontos, super.nome) {
+    
+    try {
+      this.pontos = pontos;
+    } catch(e) {
+      this.pontos = 0;
+    }
+
+  }
 
   @override
   String toString() => '${pontos.toString().padLeft(2)} pts - $nome';
